@@ -12,6 +12,7 @@ import simpleaudio as sa
 # 4:00 - alarms start
 # 3:59
 # 3:58
+# ----------------
 
 
 class Application(Frame):
