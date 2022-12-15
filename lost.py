@@ -2,6 +2,17 @@ from tkinter import *
 from tkinter import ttk
 import simpleaudio as sa
 
+# NOTE:
+# alarm 4 dakkika kalinca calsin
+# start button olmasin
+# 108:00
+# 107:00
+# ...
+# 5:00
+# 4:00 - alarms start
+# 3:59
+# 3:58
+
 
 class Application(Frame):
     def __init__(self, master):
@@ -12,7 +23,7 @@ class Application(Frame):
         self._alarm_id = None
         self._paused = False
         self._starttime = 10 * 60 + 8
-        self._code = "123"
+        self._code = "4 8 15 16 23 42"
         self._wave_obj = sa.WaveObject.from_wave_file("alarm.wav")
 
     def createWidgets(self):
