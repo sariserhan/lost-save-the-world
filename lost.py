@@ -3,12 +3,7 @@ from tkinter import ttk
 import simpleaudio as sa
 
 # NOTE:
-# alarm 4 dakkika kalinca calsin
-# start button olmasin
-# 108:00
-# 107:00
-# ...
-# 5:00
+
 # 4:00 - alarms start
 # 3:59
 # 3:58
@@ -29,13 +24,13 @@ class Application(Frame):
 
     def createWidgets(self):
         self.someFrame = Frame(self)
-        self.startButton = Button(
-            self.someFrame, text="Start", command=self.startTime)
-        self.startButton.pack(side=LEFT)
-        self.someFrame.pack(side=TOP)
+        # self.startButton = Button(
+        #     self.someFrame, text="Start", command=self.startTime)
+        # self.startButton.pack(side=LEFT)
+        # self.someFrame.pack(side=TOP)
 
         self.labelvariable = StringVar()
-        self.labelvariable.set("10:08")
+        self.labelvariable.set("100:08")
         self.thelabel = Label(
             self, textvariable=self.labelvariable, font=('Helvetica', 50))
         self.thelabel.pack(side=TOP)
@@ -52,11 +47,11 @@ class Application(Frame):
             self._paused = False
             self.countdown(6080)
 
-    def startTime(self):
-        """ Resume """
-        self._paused = False
-        if self._alarm_id is None:
-            self.countdown(self._starttime)
+    # def startTime(self):
+    #     """ Resume """
+    #     self._paused = False
+    #     if self._alarm_id is None:
+    #         self.countdown(self._starttime)
 
     def stopTime(self):
         """ Pause """
@@ -71,16 +66,16 @@ class Application(Frame):
                 1000, self.countdown, timeInSeconds, False)
         else:
             mins, secs = divmod(timeInSeconds, 60)
-            timeformat = "{0:02d}:{1:02d}".format(mins, secs)
+            timeformat = "{0:002d}:{1:02d}".format(mins, secs)
             app.labelvariable.set(timeformat)
             self._alarm_id = self.master.after(
                 1000, self.countdown, timeInSeconds - 1, False)
 
-        if mins < 10 and secs % 5 == 0:
+        if mins < 4 and secs % 5 == 0:
             print(mins, secs)
             play_obj = self._wave_obj.play()
 
-        elif mins < 8 and secs % 2 == 0:
+        elif mins < 2 and secs % 2 == 0:
             play_obj = self._wave_obj.play()
 
     def printInput(self):
@@ -102,4 +97,5 @@ if __name__ == '__main__':
     root = Tk()
     root.title("Timer")
     app = Application(root)
+    app.countdown(6008)
     root.mainloop()
